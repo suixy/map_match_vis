@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Echarts</title>
+    <script src="echarts.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+
+    var weatherIcons = {
+        'Sunny': './data/asset/img/weather/sunny_128.png',
+        'Cloudy': './data/asset/img/weather/cloudy_128.png',
+        'Showers': './data/asset/img/weather/showers_128.png'
+    };
+
+    var seriesLabel = {
+        normal: {
+            show: true,
+            textBorderColor: '#333',
+            textBorderWidth: 2
+        }
+    }
+
+    option = {
+        title: {
+            text: '平均运行时间'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        legend: {
+            data: ['IVMM', 'AIVMM', 'My approch']
+        },
+        grid: {
+            left: 100
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'value',
+            name: 'Seconds',
+            axisLabel: {
+                formatter: '{value}'
+            }
+        },
+        yAxis: {
+            type: 'category',
+            inverse: true,
+            data: ['complex road', 'normal road', 'mixed road'],
+            axisLabel: {
+                formatter: function (value) {
+                    return value;
+                },
+                margin: 20,
+                rich: {
+                    value: {
+                        lineHeight: 30,
+                        align: 'center'
+                    },
+                    Sunny: {
+                        height: 40,
+                        align: 'center',
+                        backgroundColor: {
+                            image: weatherIcons.Sunny
+                        }
+                    },
+                    Cloudy: {
+                        height: 40,
+                        align: 'center',
+                        backgroundColor: {
+                            image: weatherIcons.Cloudy
+                        }
+                    },
+                    Showers: {
+                        height: 40,
+                        align: 'center',
+                        backgroundColor: {
+                            image: weatherIcons.Showers
+                        }
+                    }
+                }
+            }
+        },
+        series: [
+            {
+                name: 'City Alpha',
+                type: 'bar',
+                data: [165, 170, 30],
+                label: seriesLabel,
+            },
+            {
+                name: 'City Beta',
+                type: 'bar',
+                label: seriesLabel,
+                data: [150, 105, 110]
+            },
+            {
+                name: 'City Gamma',
+                type: 'bar',
+                label: seriesLabel,
+                data: [220, 82, 63]
+            }
+        ]
+    };
+
+
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Echarts</title>
+    <script src="echarts.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    option = {
+
+
+        title: {
+            text: 'Gps轨迹实际经过的道路等级分布',
+            left: 'center',
+            top: 20
+        },
+
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            type: 'scroll',
+            orient: 'vertical',
+            right: 10,
+            top: 20,
+            bottom: 40,
+            data: ['motorway', 'trunk', 'primary', 'others']
+        },
+        series : [
+            {
+                name:'道路等级',
+                type:'pie',
+                radius : '55%',
+                center: ['40%', '50%'],
+                label: {
+                    normal: {
+                        formatter: '{b} : {c} ({d}%)',
+                        position: 'outside'
+                    }
+                },
+                data:[
+                    {value:344, name:'motorway'},
+                    {value:459, name:'trunk'},
+                    {value:39, name:'primary'},
+                    {value:264, name:'others'}
+                ].sort(function (a, b) { return a.value - b.value; }),
+
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>

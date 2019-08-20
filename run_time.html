@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Echarts</title>
+    <script src="echarts.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+
+    option = {
+        title: {
+            text: '地图匹配结果'
+        },
+        legend: {},
+        tooltip: {},
+        dataset: {
+            source: [
+                ['product', 'IVMM', 'AIVMM', 'My approch'],
+                ['complex road', 53.3, 85.8, 95.7],
+                ['normal road', 83.1, 90.4, 91.1],
+                ['mixed road', 72.4, 90.2, 93.6]
+            ]
+        },
+        xAxis: {type: 'category'},
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                show: true,
+                interval: 'auto',
+                formatter: '{value} %'
+            },
+            show: true
+        },
+        // Declare several bar series, each will be mapped
+        // to a column of dataset.source by default.
+        series: [
+            {type: 'bar',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top',
+                    }
+                }
+            },
+            {type: 'bar',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            },
+            {type: 'bar',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                }
+            }
+        ]
+    };
+
+
+
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>
